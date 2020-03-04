@@ -1,5 +1,5 @@
 class ListsController < ApplicationController
-  before_action :set_list, only: [:show, :edit, :update, :destroy]
+  before_action :set_list, only: [:show, :edit, :update, :destroy, :css]
 
   def index
     @lists = List.all
@@ -48,6 +48,14 @@ class ListsController < ApplicationController
     respond_to do |format|
       format.html { redirect_to space_url(@list.space), notice: 'List was successfully destroyed.' }
       format.json { head :no_content }
+    end
+  end
+
+  def css
+    if @list.stylesheet.attached?
+      redirect_to url_for(@list.stylesheet)
+    else
+      redirect_to @list
     end
   end
 
