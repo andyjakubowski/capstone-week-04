@@ -6,6 +6,9 @@
     <h1 class="list-page__title"><%= @list.name %></h1>
     <p class="list-page__token-count">
       <%= @list.tokens.size %> <%= 'token'.pluralize @list.tokens.size %>
+      <% if @list.stylesheet.attached? %>
+      — <%= link_to 'Download CSS', url_for(@list.stylesheet) %>
+      <% end %>
     </p>
     <div class="list-page__edit-name-pill">
       <div class="pill-actions">
